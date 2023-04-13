@@ -1,0 +1,36 @@
+<table tuiTable [columns]="columns">
+    <thead>
+        <tr tuiThGroup>
+            <th *tuiHead="'name'" tuiTh>Name</th>
+            <th *tuiHead="'birthdate'" tuiTh>Birthdate</th>
+            <th *tuiHead="'number'" tuiTh>Number</th>
+            <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+        </tr>
+    </thead>
+    <tbody *tuiLet="students$ | async as students" tuiTbody>
+        <tr *ngFor="let item of students; let index = index" tuiTr>
+            <td *tuiCell="'name'" tuiTd>{{ index + 1 }}. {{ item.name }}</td>
+            <td *tuiCell="'birthdate'" tuiTd>
+                <a>
+                    {{ item.birthdate }}
+                </a>
+            </td>
+            <td *tuiCell="'number'" tuiTd>
+                <div>{{ item.number }}</div>
+            </td>
+            <td *tuiCell="'actions'" tuiTd>
+                <button
+                    tuiIconButton
+                    appearance="flat"
+                    size="s"
+                    icon="tuiIconTrash"
+                    title="Remove"
+                    shape="rounded"
+                    type="button"
+                    class="remove"
+                    (click)="remove(item)"
+                ></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
