@@ -62,7 +62,7 @@
           <td *tuiCell="'name'" tuiTd>{{ index + 1 }}. {{ item.name }}</td>
           <td *tuiCell="'birthdate'" tuiTd>
             <a>
-              {{ item.birthdate }}
+              {{ item.birthdate | date: 'mediumDate' }}
             </a>
           </td>
           <td *tuiCell="'number'" tuiTd>

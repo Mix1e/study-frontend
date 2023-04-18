@@ -5,6 +5,7 @@ import {FormGroup} from "@angular/forms";
 import {StudentsService} from "../../../api";
 import {CreateStudentComponent} from "../create-student/create-student.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {TuiDay} from "@taiga-ui/cdk";
 
 @Component({
   selector: 'app-update-student',
@@ -23,7 +24,12 @@ export class UpdateStudentComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.formData.patchValue(this.student);
+    const date = this.student.birthdate;
+    this.formData.patchValue({
+      name: this.student.name,
+      number: this.student.number,
+      birthdate: new TuiDay(date.getFullYear(), date.getMonth(), date.getDay()),
+    });
   }
 
   public onClose(): void {
