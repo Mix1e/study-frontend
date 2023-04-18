@@ -16,12 +16,3 @@ tbody {
 tr td {
     background: var(--tui-base-02);
 }
-
-.remove {
-  opacity: 0;
-
-  tr:hover &,
-  tr:focus-within & {
-    opacity: 1;
-  }
-}

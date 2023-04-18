@@ -1,0 +1,34 @@
+<tui-tabs [(activeItemIndex)]="activeItemIndex">
+  <button
+    tuiTab
+    (click)="routeToPage(menu[0].url)"
+  >
+    <tui-svg
+      src="tuiIconCreditCard"
+      class="tui-space_right-2"
+    ></tui-svg>
+    {{menu[0].title}}
+  </button>
+  <button
+    tuiTab
+    (click)="routeToPage(menu[1].url)"
+  >
+    <tui-svg
+      src="tuiIconAlignJustifyLarge"
+      class="tui-space_right-2"
+    ></tui-svg>
+    {{menu[1].title}}
+  </button>
+<!--
+  <button
+    style="margin-left: auto"
+    tuiButton
+    appearance="icon"
+    (click)="logout()"
+  >
+    <span class="tui-space_right-2">Выход</span>
+    <tui-svg
+      src="tuiIconLogInLarge"
+    ></tui-svg>
+  </button>-->
+</tui-tabs>

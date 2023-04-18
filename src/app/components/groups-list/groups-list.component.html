@@ -1,1 +1,113 @@
-<p>groups-list works!</p>
+<ng-container *ngIf="!(reload$ | async)">
+<button
+  tuiButton
+  appearance="primary"
+  size="m"
+  icon="tuiIconPlusLarge"
+  class="button__create"
+  (click)="create()"
+>
+  Добавить группу
+</button>
+
+<ng-container *tuiLet="groups$ | async as groups">
+<tui-accordion class="container">
+  <tui-accordion-item class="accordion-item" *ngFor="let item of groups">
+    <span>{{item.name}}</span>
+    <ng-template tuiAccordionItemContent>
+      <div class="button__action">
+        <button
+          tuiIconButton
+          appearance="flat"
+          size="s"
+          icon="tuiIconDraft"
+          title="Изменить"
+          shape="rounded"
+          type="button"
+          (click)="update(item)"
+        ></button>
+        <button
+          tuiIconButton
+          appearance="flat"
+          size="s"
+          icon="tuiIconTrash"
+          title="Удалить"
+          shape="rounded"
+          type="button"
+          (click)="remove(item)"
+        ></button>
+
+        <button
+          tuiIconButton
+          appearance="flat"
+          size="s"
+          icon="tuiIconPlus"
+          title="Добавить студента"
+          shape="rounded"
+          type="button"
+          (click)="addStudent(item)"
+        ></button>
+      </div>
+
+      <table style="width: 100%" tuiTable [columns]="columns">
+        <thead>
+        <tr tuiThGroup>
+          <th *tuiHead="'name'" tuiTh>Name</th>
+          <th *tuiHead="'birthdate'" tuiTh>Birthdate</th>
+          <th *tuiHead="'number'" tuiTh>Number</th>
+        </tr>
+        </thead>
+        <tbody *tuiLet="item.students as students" tuiTbody>
+        <tr *ngFor="let item of students; let index = index" tuiTr>
+          <td *tuiCell="'name'" tuiTd>{{ index + 1 }}. {{ item.name }}</td>
+          <td *tuiCell="'birthdate'" tuiTd>
+            <a>
+              {{ item.birthdate }}
+            </a>
+          </td>
+          <td *tuiCell="'number'" tuiTd>
+            <div>{{ item.number }}</div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </tui-accordion-item>
+</tui-accordion>
+</ng-container>
+
+<ng-template
+  let-modal
+  [tuiDialogOptions]="{size: 'm'}"
+  [(tuiDialog)]="isUpdateModalOpen"
+>
+  <app-update-group
+    [modal]="modal"
+    [group]="chosenGroup"
+    (reload)="reload()"
+  ></app-update-group>
+</ng-template>
+
+<ng-template
+  let-modal
+  [tuiDialogOptions]="{size: 'm'}"
+  [(tuiDialog)]="isCreateModalOpen"
+>
+  <app-create-group
+    [modal]="modal"
+    (reload)="reload()"
+  ></app-create-group>
+</ng-template>
+</ng-container>
+
+<ng-template
+  let-modal
+  [tuiDialogOptions]="{size: 'm'}"
+  [(tuiDialog)]="isAddStudentModalOpen"
+>
+  <app-create-student
+    [modal]="modal"
+    [groupId]="chosenGroup.id"
+    (reload)="reload()"
+  ></app-create-student>
+</ng-template>

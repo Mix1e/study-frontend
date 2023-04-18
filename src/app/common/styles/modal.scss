@@ -1,0 +1,15 @@
+:host {
+  padding: .4rem 1.6rem;
+}
+
+.button {
+  &__container {
+    display: flex;
+    margin-top: 1.8rem;
+    justify-content: center;
+  }
+}
+
+h3 {
+  color: var(--tui-text-02);
+}

@@ -5,3 +5,7 @@ export interface IGroup {
     name: string;
     students: IStudent[];
 }
+
+export interface ICreateGroupRequest {
+  name: string;
+}

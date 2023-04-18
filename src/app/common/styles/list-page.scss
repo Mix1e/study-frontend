@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 80px);
+}
+
+.button {
+  &__create {
+    position: fixed;
+    top: 4.4rem;
+    right: 2rem;
+  }
+
+  &__action {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+.container {
+  width: 90%;
+}
+
+.accordion-item {
+  display: flex;
+  flex-direction: column;
+}
+
+
+

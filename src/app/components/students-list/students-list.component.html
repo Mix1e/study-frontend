@@ -1,3 +1,15 @@
+<ng-container *ngIf="!(reload$ | async)">
+<button
+  tuiButton
+  appearance="primary"
+  size="m"
+  icon="tuiIconPlusLarge"
+  class="button__create"
+  (click)="create()"
+>
+  Добавить студента
+</button>
+
 <table tuiTable [columns]="columns">
     <thead>
         <tr tuiThGroup>
@@ -19,18 +31,51 @@
                 <div>{{ item.number }}</div>
             </td>
             <td *tuiCell="'actions'" tuiTd>
+              <button
+                tuiIconButton
+                appearance="flat"
+                size="s"
+                icon="tuiIconDraft"
+                title="Изменить"
+                shape="rounded"
+                type="button"
+                (click)="update(item)"
+              ></button>
                 <button
                     tuiIconButton
                     appearance="flat"
                     size="s"
                     icon="tuiIconTrash"
-                    title="Remove"
+                    title="Удалить"
                     shape="rounded"
                     type="button"
-                    class="remove"
                     (click)="remove(item)"
                 ></button>
             </td>
         </tr>
     </tbody>
 </table>
+</ng-container>
+
+<ng-template
+  let-modal
+  [tuiDialogOptions]="{size: 'm'}"
+  [(tuiDialog)]="isUpdateModalOpen"
+>
+  <app-update-student
+  [modal]="modal"
+  [student]="chosenStudent"
+  (reload)="reload()"
+  ></app-update-student>
+</ng-template>
+
+<ng-template
+  let-modal
+  [tuiDialogOptions]="{size: 'm'}"
+  [(tuiDialog)]="isCreateModalOpen"
+>
+  <app-create-student
+    [modal]="modal"
+    (reload)="reload()"
+  ></app-create-student>
+</ng-template>

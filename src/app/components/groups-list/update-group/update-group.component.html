@@ -1,0 +1,39 @@
+<h3 class="tui-island_text-align_center tui-text_h3">Редактирование группы</h3>
+<form
+  class="b-form"
+  [formGroup]="formData"
+>
+  <tui-input formControlName="name">
+    Введите имя
+    <input
+      tuiTextfield
+    />
+  </tui-input>
+  <tui-error
+    formControlName="name"
+    [error]="[] | tuiFieldError | async"
+  ></tui-error>
+
+  <div class="button__container">
+    <button
+      tuiButton
+      type="button"
+      size="m"
+      class="tui-space_right-3"
+      appearance="secondary"
+      (click)="onClose()"
+    >
+      Отмена
+    </button>
+    <button
+      tuiButton
+      type="button"
+      size="m"
+      appearance="primary"
+      (click)="onSubmit()"
+    >
+      Сохранить
+    </button>
+  </div>
+
+</form>
